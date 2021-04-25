@@ -8,12 +8,11 @@ const output = document.querySelectorAll("output");
 const btnContainer = document.querySelector(".btn-container");
 let img = document.querySelector("img");
 
-
 //  filters
 function inputValue(event) {
   root.style.setProperty(`--${event.target.name}`, event.target.value + event.target.dataset.sizing);
   output.forEach((el) => (el.name === event.target.name ? (el.value = event.target.value) : null));
-};
+}
 filters.forEach((event) => event.addEventListener("input", inputValue));
 
 // reset btn
@@ -23,7 +22,7 @@ function btnReset() {
     root.style.setProperty(`--${input.name}`, input.value + input.dataset.sizing);
   });
   output.forEach((el) => (el.value = el.defaultValue));
-};
+}
 //  Next picture
 let count = 1;
 function nextPicture() {
@@ -56,10 +55,10 @@ function nextPicture() {
   }
   img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${season}/${count}.jpg`;
   img.onload = () => {
-    drawImage()
-  }
+    drawImage();
+  };
   count++;
-};
+}
 // Load picture
 const selectedFile = document.querySelector(".btn-load--input");
 selectedFile.addEventListener("change", loadPicture, false);
@@ -71,20 +70,19 @@ function loadPicture() {
     img.src = reader.result;
     img.onload = () => {
       drawImage();
-    }
-  }
-};
-
+    };
+  };
+}
 
 //
 function drawImage() {
   const canvas = document.querySelector("canvas");
   const imgCanvas = new Image();
   const ctx = canvas.getContext("2d");
-    imgCanvas.src = img.src;
-    imgCanvas.setAttribute('crossOrigin', 'anonymous');
-    // imgCanvas.crossorigin = "anonymous";
-    imgCanvas.onload = function () {
+  imgCanvas.src = img.src;
+  imgCanvas.setAttribute("crossOrigin", "anonymous");
+  // imgCanvas.crossorigin = "anonymous";
+  imgCanvas.onload = function () {
     canvas.width = imgCanvas.width;
     canvas.height = imgCanvas.height;
     ctx.filter = `blur(${output[0].value}px) invert(${output[1].value}%) sepia(${output[2].value}%) saturate(${output[3].value}%) hue-rotate(${output[4].value}deg)`;
@@ -93,14 +91,13 @@ function drawImage() {
       let link = document.createElement("a");
       link.href = canvas.toDataURL();
       link.download = "image.png";
-        link.click();
-        link.delete;
-        flag = false;
+      link.click();
+      link.delete;
+      flag = false;
     }
-  }
+  };
 }
 drawImage();
-
 
 // all btn
 btnContainer.addEventListener("mousedown", (event) => {
