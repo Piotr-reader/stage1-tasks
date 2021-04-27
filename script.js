@@ -70,9 +70,17 @@ function loadPicture() {
     img.src = reader.result;
     img.onload = () => {
       drawImage();
+<<<<<<< HEAD:photo-filter/script.js
+    }
+    selectedFile.value = selectedFile.defaultValue;
+  }
+};
+
+=======
     };
   };
 }
+>>>>>>> 57f07257df78a0710a4357cb539b067b1b3128de:script.js
 
 //
 function drawImage() {
